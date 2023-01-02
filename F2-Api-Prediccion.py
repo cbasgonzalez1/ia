@@ -70,9 +70,6 @@ def predecir(datos):
 #Armar Api
 app = FastAPI()
     
-with open("data.json") as f:
-    data = json.load(f)
-
 class Sintomas(BaseModel):
     sintomas: list = []
 
@@ -115,4 +112,4 @@ def obtenerUltimaTemperatura():
     return res['temp']
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)	
+    uvicorn.run("F2-Api-Prediccion:app", host="0.0.0.0", port=os.getenv("PORT", default=8000), log_level="info")
